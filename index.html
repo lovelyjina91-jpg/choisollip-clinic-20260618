@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>최솔립 · 영어 숙제 (사역동사 · 수동태 · 지각동사 · 90문제)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#28344b;
+    --ink-soft:#dde3ef;
+    --teal:#1f9e8f;
+    --teal-soft:#d6efea;
+    --amber:#e0a02b;
+    --amber-soft:#f8ecd0;
+    --bg:#f3f5f8;
+    --card:#ffffff;
+    --text:#2b2f36;
+    --muted:#6b7280;
+    --kakao:#fee500;
+    --kakao-text:#3c1e1e;
+    --good:#0d9b63;
+    --bad:#e05656;
+    --line:#e6e9ef;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;line-height:1.6}
+  .screen{display:none;padding:24px 20px 80px;max-width:760px;margin:0 auto}
+  .screen.active{display:block}
+  h1{font-size:1.7rem;margin:0 0 6px;color:var(--ink);font-weight:900;letter-spacing:-0.5px}
+  h2{font-size:1.25rem;margin:0 0 12px;color:var(--ink);font-weight:800}
+  h3{font-size:1.05rem;margin:18px 0 8px;color:var(--teal);font-weight:800}
+  p{margin:0 0 10px}
+  .pill{display:inline-block;padding:4px 10px;border-radius:999px;font-size:.78rem;font-weight:700;margin-right:6px;margin-bottom:6px}
+  .pill.teal{background:var(--teal-soft);color:#0c6357}
+  .pill.amber{background:var(--amber-soft);color:#8a6310}
+  .pill.ink{background:var(--ink-soft);color:var(--ink)}
+
+  .header{
+    background:linear-gradient(135deg,var(--ink) 0%,#3a4a68 55%,var(--teal) 130%);
+    color:#fff;border-radius:22px;padding:22px 22px 26px;margin-bottom:18px;
+    box-shadow:0 10px 30px rgba(40,52,75,.22);
+  }
+  .header .who{font-size:.95rem;font-weight:700;opacity:.95;margin-bottom:4px}
+  .header h1{color:#fff;font-size:1.5rem}
+  .header .sub{font-size:.92rem;font-weight:500;opacity:.95}
+  .header .brand{display:inline-block;margin-top:10px;font-size:.78rem;font-weight:700;background:rgba(255,255,255,.18);padding:4px 12px;border-radius:999px;letter-spacing:.3px}
+
+  .card{background:var(--card);border-radius:18px;padding:18px 18px 16px;margin-bottom:14px;
+    box-shadow:0 4px 16px rgba(40,52,75,.06);border:1px solid var(--line)}
+  .card.accent-teal{border-left:6px solid var(--teal)}
+  .card.accent-amber{border-left:6px solid var(--amber)}
+  .card.accent-ink{border-left:6px solid var(--ink)}
+
+  .dialog{background:#f8fafc;border-radius:12px;padding:12px 14px;border:1px dashed #cdd5e2;font-size:.95rem;margin:8px 0}
+  .dialog .line{margin:3px 0}
+  .dialog .a{color:#1f6f9e;font-weight:700}
+  .dialog .b{color:#0c6357;font-weight:700}
+
+  .note{background:#fdf6e9;border-left:4px solid var(--amber);padding:10px 12px;border-radius:8px;font-size:.92rem;margin:10px 0}
+
+  .section-header{background:linear-gradient(135deg,var(--teal) 0%,#16776b 130%);color:#fff;border-radius:16px;padding:16px 18px;margin:22px 0 14px;box-shadow:0 6px 18px rgba(31,158,143,.25)}
+  .section-header .stitle{font-size:1.2rem;font-weight:900;letter-spacing:-.3px}
+  .section-header .ssub{font-size:.86rem;opacity:.95;margin-top:2px}
+
+  .field{margin-top:10px}
+  .field label{display:block;font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:6px}
+  .field input{width:100%;padding:13px 14px;border:2px solid var(--line);border-radius:12px;font-size:1.05rem;font-family:inherit;background:#fafbfd}
+  .field input:focus{outline:none;border-color:var(--teal);background:#fff}
+
+  .btnrow{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+  .btn{flex:1;min-width:140px;padding:13px 18px;border:none;border-radius:14px;font-weight:800;font-size:1rem;cursor:pointer;font-family:inherit;transition:transform .08s ease, box-shadow .08s ease}
+  .btn:active{transform:translateY(1px)}
+  .btn.primary{background:var(--teal);color:#fff;box-shadow:0 6px 16px rgba(31,158,143,.32)}
+  .btn.primary:disabled{background:#b8c2cf;box-shadow:none;cursor:not-allowed}
+  .btn.ghost{background:#fff;color:var(--ink);border:2px solid var(--line)}
+  .btn.kakao{background:var(--kakao);color:var(--kakao-text);font-size:1.05rem;padding:16px;box-shadow:0 6px 16px rgba(254,229,0,.45)}
+
+  .progress{position:sticky;top:0;background:rgba(243,245,248,.92);backdrop-filter:blur(6px);padding:10px 0;z-index:10;margin-bottom:8px}
+  .progress .bar{height:8px;background:#e4e8ef;border-radius:4px;overflow:hidden}
+  .progress .fill{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--amber));transition:width .3s ease}
+  .progress .label{font-size:.85rem;color:var(--muted);margin-bottom:4px;font-weight:700}
+
+  .qcard{background:#fff;border-radius:18px;padding:16px 18px;margin-bottom:14px;box-shadow:0 4px 14px rgba(40,52,75,.05);border:1px solid var(--line)}
+  .qcard .qmeta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+  .qcard .qnum{font-size:1.05rem;font-weight:900;color:var(--ink);margin-bottom:6px}
+  .qcard .qbody{font-size:.95rem;margin-bottom:10px}
+  .choices{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+  .choice{background:#fafbfd;border:2px solid #eceff3;border-radius:10px;padding:10px 12px;cursor:pointer;font-size:.95rem;transition:all .12s ease;display:flex;align-items:flex-start;gap:8px}
+  .choice .num{font-weight:800;color:var(--teal);min-width:18px}
+  .choice:hover{border-color:var(--teal-soft);background:#f3fbf9}
+  .choice.selected{border-color:var(--teal);background:var(--teal-soft);color:#0c5247}
+  .choice.locked{cursor:default;opacity:.9}
+  .qcard input.short{width:100%;padding:11px 12px;border:2px solid #eceff3;border-radius:10px;font-size:.97rem;font-family:inherit;background:#fafbfd}
+  .qcard input.short:focus{outline:none;border-color:var(--teal);background:#fff}
+  .submitrow{display:flex;gap:8px;margin-top:10px;align-items:center}
+  .submitrow .mini{background:var(--teal);color:#fff;border:none;padding:9px 14px;border-radius:10px;font-weight:800;cursor:pointer;font-family:inherit}
+  .submitrow .mini.disabled{background:#cfd4dc;cursor:not-allowed}
+  .feedback{margin-top:8px;font-size:.92rem;font-weight:700;padding:6px 10px;border-radius:8px;display:none}
+  .feedback.show{display:block}
+  .feedback.ok{background:#e6f9f0;color:#0a7a4e}
+  .feedback.ng{background:#fdeaea;color:#a83232}
+  .explanation{margin-top:10px;padding:11px 13px;border-radius:10px;background:var(--amber-soft);font-size:.92rem;color:#5b4500;display:none;border-left:4px solid var(--amber);line-height:1.7}
+  .explanation.show{display:block}
+  .explanation strong{color:#0c6357}
+
+  .scorebox{background:linear-gradient(135deg,var(--ink) 0%,var(--teal) 130%);color:#fff;border-radius:20px;padding:22px;text-align:center;margin-bottom:14px;box-shadow:0 8px 24px rgba(40,52,75,.25)}
+  .scorebox .big{font-size:2.6rem;font-weight:900;line-height:1.1}
+  .scorebox .sub{font-size:.95rem;opacity:.95}
+  .summary{background:#fff;border-radius:14px;padding:14px;margin-bottom:14px;border:1px solid var(--line)}
+  .summary .row{display:flex;justify-content:space-between;padding:5px 0;font-size:.95rem;border-bottom:1px dashed #eee}
+  .summary .row:last-child{border-bottom:none}
+  .summary .row b{color:var(--ink)}
+  .preview{background:#fafbfd;border-radius:12px;padding:14px;font-family:'Noto Sans KR',monospace;font-size:.85rem;white-space:pre-wrap;max-height:300px;overflow-y:auto;border:1px solid var(--line);line-height:1.55}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:30px;font-weight:700;font-size:.92rem;opacity:0;transition:all .25s ease;z-index:100;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .kbd{display:inline-block;background:#fff;border:1px solid #ccc;border-bottom-width:2px;border-radius:5px;padding:1px 7px;font-size:.8rem;font-family:monospace;font-weight:700;color:var(--ink)}
+  code.eng{background:#eef2f7;padding:2px 6px;border-radius:5px;font-family:'Courier New',monospace;font-size:.95em;color:var(--ink);font-weight:700}
+  .green{color:var(--good);font-weight:700}
+  .red{color:var(--bad);font-weight:700}
+  .foot{text-align:center;font-size:.8rem;color:var(--muted);margin-top:20px}
+</style>
+</head>
+<body>
+
+<!-- ========== START SCREEN ========== -->
+<section id="screen-start" class="screen active">
+  <div class="header">
+    <div class="who">📘 최솔립 학생 영어 숙제</div>
+    <h1>사역동사 · 수동태 · 지각동사</h1>
+    <div class="sub">초등 6학년 · 3개 단원 × 30문제 = 총 90문제</div>
+    <span class="brand">제공 · 영핏 지나티처</span>
+  </div>
+
+  <div class="card accent-teal">
+    <h2>🎯 오늘의 숙제</h2>
+    <p>세 가지 문법을 <b>각 30문제씩, 총 90문제</b>로 차근차근 연습해요.</p>
+    <p>① 사역동사(make·have·let·get·help) ② 수동태(be+p.p.) ③ 지각동사(see·hear·feel·watch)</p>
+    <p>한 문제씩 풀면 바로 체크돼요. <b>친절한 해설은 90문제를 모두 푼 뒤 한 번에 공개</b>됩니다 😊</p>
+  </div>
+
+  <div class="card accent-amber">
+    <h3>✍️ 시작하기 전에 — 이름을 적어주세요</h3>
+    <p style="font-size:.92rem;color:var(--muted);margin-bottom:4px">결과를 카톡으로 보낼 때 이름이 들어가요. 꼭 입력해 주세요!</p>
+    <div class="field">
+      <label for="studentName">학생 이름</label>
+      <input id="studentName" type="text" placeholder="예) 최솔립" autocomplete="off" />
+    </div>
+  </div>
+
+  <div class="note">
+    ⌨️ <b>객관식</b>은 <span class="kbd">1</span>~<span class="kbd">5</span> 키로 선택하면 바로 체크되고 다음 문제로 넘어가요. <b>주관식</b>은 답 입력 후 <span class="kbd">Enter</span>!
+  </div>
+
+  <button class="btn primary" id="startBtn" disabled>이름을 입력하면 시작돼요</button>
+</section>
+
+<!-- ========== QUIZ SCREEN ========== -->
+<section id="screen-quiz" class="screen">
+  <div class="progress">
+    <div class="label" id="progressLabel">진행 0 / 90</div>
+    <div class="bar"><div class="fill" id="progressFill"></div></div>
+  </div>
+
+  <div id="quizList"></div>
+
+  <div class="note" id="quizEndNote" style="display:none">
+    🎉 모든 문제를 풀었어요! 해설을 확인하고, 잠시 후 결과 화면으로 이동해요.
+  </div>
+</section>
+
+<!-- ========== RESULT SCREEN ========== -->
+<section id="screen-result" class="screen">
+  <div class="scorebox">
+    <div class="sub" id="resultName">학생 점수</div>
+    <div class="big" id="finalScore">0 / 90</div>
+    <div class="sub" id="finalRate">정답률 0%</div>
+  </div>
+
+  <div class="summary">
+    <div class="row"><span>총 문제 수</span><b>90문제</b></div>
+    <div class="row"><span>맞힌 문제</span><b id="finalCorrect">0개</b></div>
+    <div class="row"><span>틀린 문제</span><b id="finalWrong">0개</b></div>
+    <div class="row"><span>풀이 시간</span><b id="finalTime">0분</b></div>
+  </div>
+
+  <div class="summary">
+    <div class="row"><span>① 사역동사</span><b id="u1score">0 / 30</b></div>
+    <div class="row"><span>② 수동태</span><b id="u2score">0 / 30</b></div>
+    <div class="row"><span>③ 지각동사</span><b id="u3score">0 / 30</b></div>
+  </div>
+
+  <div class="card accent-teal">
+    <h2>💬 지나티처에게 보낼 카톡 메시지</h2>
+    <p style="font-size:.9rem;color:var(--muted)">아래 버튼을 누르면 메시지가 복사돼요. 카톡 열어서 붙여넣기!</p>
+    <button class="btn kakao" id="copyBtn">💬 카카오톡 메시지 복사하기</button>
+    <div style="margin-top:14px">
+      <div style="font-size:.85rem;font-weight:700;color:var(--muted);margin-bottom:6px">미리보기</div>
+      <div class="preview" id="kakaoPreview"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📚 풀이 다시 보기</h3>
+    <p style="font-size:.9rem">아래 버튼으로 모든 문제의 해설을 다시 볼 수 있어요.</p>
+    <button class="btn ghost" onclick="show('screen-quiz');window.scrollTo(0,0)">문제 화면으로 돌아가기</button>
+  </div>
+
+  <div class="foot">영핏 지나티처 · 최솔립 영어 숙제</div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============== DATA ==============
+const TEACHER = "지나티처";
+let STUDENT = "학생";
+
+const QUESTIONS = [
+  // ===================== 단원 1 · 사역동사 (1~30) =====================
+  {id:1, unit:"사역동사", type:"객관식", topic:"make + 동사원형",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">My mom made me ___ my room before dinner.</code>`,
+   choices:["to clean","clean","cleaning","cleaned","cleans"], answer:2,
+   explanation:"사역동사 <b>make/have/let</b> 뒤에는 목적어 다음에 <b>동사원형</b>이 와요! made me <code class='eng'>clean</code>. (to clean ✗, cleaning ✗)"},
+  {id:2, unit:"사역동사", type:"객관식", topic:"have + 동사원형",
+   body:`빈칸에 알맞은 것은? (그가 고치게 시켰다)<br><code class="eng">I had my brother ___ my bike yesterday.</code>`,
+   choices:["fixed","to fix","fix","fixing","fixes"], answer:3,
+   explanation:"have도 사역동사예요 → 목적어 + <b>동사원형</b>. had my brother <code class='eng'>fix</code>."},
+  {id:3, unit:"사역동사", type:"객관식", topic:"let + 동사원형",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">My dad lets me ___ computer games on Saturdays.</code>`,
+   choices:["to play","plays","played","play","playing"], answer:4,
+   explanation:"let(허락하다)도 사역동사 → <b>동사원형</b>. lets me <code class='eng'>play</code>."},
+  {id:4, unit:"사역동사", type:"객관식", topic:"get + to부정사",
+   body:`빈칸에 알맞은 것은? (시켰다)<br><code class="eng">She got her son ___ his homework.</code>`,
+   choices:["do","to do","doing","does","done"], answer:2,
+   explanation:"<b>get</b>은 '시키다' 뜻이지만 목적격보어로 <b>to부정사</b>를 써요! got her son <code class='eng'>to do</code>. make/have/let과 달라요."},
+  {id:5, unit:"사역동사", type:"객관식", topic:"help + (to)동사원형",
+   body:`빈칸에 <b>들어갈 수 없는</b> 것은?<br><code class="eng">He helped me ___ the heavy table.</code>`,
+   choices:["carry","to carry","move","lift","carrying"], answer:5,
+   explanation:"help는 뒤에 <b>동사원형</b> 또는 <b>to부정사</b> 둘 다 OK (carry / to carry). 하지만 <code class='eng'>carrying</code>(-ing)은 안 돼요!"},
+  {id:6, unit:"사역동사", type:"객관식", topic:"make + 동사원형",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">The funny clown made the children ___.</code>`,
+   choices:["to laugh","laughed","laugh","laughing","laughs"], answer:3,
+   explanation:"make + 목적어 + <b>동사원형</b>. made the children <code class='eng'>laugh</code>(웃게 만들었다)."},
+  {id:7, unit:"사역동사", type:"객관식", topic:"let (허락하다)",
+   body:`우리말과 같은 뜻의 문장은?<br><span style="color:var(--muted)">엄마가 내가 밖에 나가게 해주셨다.</span>`,
+   choices:["My mom made me go out.","My mom let me go out.","My mom had me to go out.","My mom got me go out.","My mom let me to go out."], answer:2,
+   explanation:"'허락하다'는 <b>let</b>! let me <code class='eng'>go</code>(원형). ④ get은 to go여야 하고, ⑤도 to go라서 ✗."},
+  {id:8, unit:"사역동사", type:"객관식", topic:"어법 점검",
+   body:`다음 중 어법상 <b>어색한</b> 것은?`,
+   choices:["My sister made me laugh.","They let us use the room.","She had the man fix the car.","The coach made them to run.","We let the dog sleep inside."], answer:4,
+   explanation:"사역동사 make 뒤에는 <b>동사원형</b>! made them <code class='eng'>run</code> (to run ✗)."},
+  {id:9, unit:"사역동사", type:"객관식", topic:"get + to부정사",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">I'll get him ___ you back later tonight.</code>`,
+   choices:["call","to call","calling","called","calls"], answer:2,
+   explanation:"get + 목적어 + <b>to부정사</b>. get him <code class='eng'>to call</code>."},
+  {id:10, unit:"사역동사", type:"객관식", topic:"have + 동사원형",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">The dentist had me ___ my mouth wide.</code>`,
+   choices:["opened","to open","opens","open","opening"], answer:4,
+   explanation:"사역동사 have → <b>동사원형</b>. had me <code class='eng'>open</code>."},
+  {id:11, unit:"사역동사", type:"객관식", topic:"사역동사 고르기",
+   body:`빈칸에 알맞은 것은? (허락의 의미)<br><code class="eng">My teacher ___ us leave early today.</code>`,
+   choices:["let","made to","got","wanted","told"], answer:1,
+   explanation:"'us <code class='eng'>leave</code>'처럼 뒤에 동사원형이 오고 '허락' 의미니 <b>let</b>이에요. got/wanted/told는 to부정사가 필요해요."},
+  {id:12, unit:"사역동사", type:"객관식", topic:"make의 수동태 (심화)",
+   body:`빈칸에 알맞은 것은? (우리는 청소하게 되었다 — make의 수동태)<br><code class="eng">We were made ___ the room.</code>`,
+   choices:["clean","cleaning","to clean","cleaned","cleans"], answer:3,
+   explanation:"⭐심화! 사역동사 make가 <b>수동태</b>가 되면 사라졌던 to가 다시 살아나요. were made <code class='eng'>to clean</code>."},
+  {id:13, unit:"사역동사", type:"객관식", topic:"let (부정문)",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">My parents don't let me ___ up late.</code>`,
+   choices:["to stay","stay","stayed","staying","stays"], answer:2,
+   explanation:"부정문이어도 let 뒤는 <b>동사원형</b>! don't let me <code class='eng'>stay</code> up."},
+  {id:14, unit:"사역동사", type:"객관식", topic:"help + (to)동사원형",
+   body:`빈칸에 <b>알맞지 않은</b> 것은?<br><code class="eng">Can you help me ___ English?</code>`,
+   choices:["learn","to learn","study","practice","learning"], answer:5,
+   explanation:"help 뒤엔 동사원형/to부정사 OK. <code class='eng'>learning</code>(-ing)만 ✗이에요."},
+  {id:15, unit:"사역동사", type:"객관식", topic:"make + 형용사",
+   body:`빈칸에 알맞은 것은? (나를 행복하게)<br><code class="eng">Your letter made me ___.</code>`,
+   choices:["happily","to happy","happy","happiness","being happy"], answer:3,
+   explanation:"make + 목적어 + <b>형용사</b>도 가능! made me <code class='eng'>happy</code>(나를 행복하게 만들었다)."},
+  {id:16, unit:"사역동사", type:"객관식", topic:"have (시키다)",
+   body:`우리말과 같은 뜻의 문장은?<br><span style="color:var(--muted)">나는 미용사가 내 머리를 자르게 했다.</span>`,
+   choices:["I had the hairdresser cut my hair.","I had the hairdresser to cut my hair.","I made the hairdresser to cut my hair.","I let the hairdresser cutting my hair.","I got the hairdresser cut my hair."], answer:1,
+   explanation:"have + 사람 + <b>동사원형</b>. had the hairdresser <code class='eng'>cut</code>. ⑤ get은 to cut이어야 하므로 ✗."},
+  {id:17, unit:"사역동사", type:"객관식", topic:"어법 점검",
+   body:`다음 중 어법상 <b>알맞은</b> 것은?`,
+   choices:["She got me carry it.","She made me to carry it.","She let me to carry it.","She had me carry it.","She help me carry it."], answer:4,
+   explanation:"④ had me <code class='eng'>carry</code>(원형)가 정답! ① get은 to carry, ②③ make/let은 원형(to ✗), ⑤는 helps여야 해요."},
+  {id:18, unit:"사역동사", type:"객관식", topic:"make + 동사원형",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">The rule makes everyone ___ a helmet.</code>`,
+   choices:["wears","to wear","wear","wearing","worn"], answer:3,
+   explanation:"make + 목적어 + <b>동사원형</b>. makes everyone <code class='eng'>wear</code>."},
+  {id:19, unit:"사역동사", type:"객관식", topic:"Let me ~ (관용표현)",
+   body:`빈칸에 알맞은 것은? (제가 도와드릴게요)<br><code class="eng">___ me help you.</code>`,
+   choices:["Let","Make","Have","Get","Help"], answer:1,
+   explanation:"<code class='eng'>Let me help you</code>는 '제가 도와드릴게요'라는 자주 쓰는 표현! Let 뒤 원형 help."},
+  {id:20, unit:"사역동사", type:"객관식", topic:"have + 동사원형",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">The magician had a rabbit ___ out of the hat.</code>`,
+   choices:["jumped","to jump","jumps","jump","jumping"], answer:4,
+   explanation:"사역 have → <b>동사원형</b>. had a rabbit <code class='eng'>jump</code>."},
+  {id:21, unit:"사역동사", type:"주관식", inputs:1, topic:"고쳐쓰기 (make)",
+   body:`어색한 부분을 바르게 고쳐 쓰시오.<br><code class="eng">My mom made me to wash the dishes.</code><br><span style="color:var(--muted)">→ made me ___ (밑줄 부분만)</span>`,
+   accept:["wash","made me wash"], canonical:"wash",
+   explanation:"make 뒤엔 <b>동사원형</b>! to wash → <code class='eng'>wash</code>."},
+  {id:22, unit:"사역동사", type:"주관식", inputs:1, topic:"고쳐쓰기 (let)",
+   body:`어색한 부분을 바르게 고쳐 쓰시오.<br><code class="eng">They let us playing soccer.</code><br><span style="color:var(--muted)">→ let us ___</span>`,
+   accept:["play","let us play"], canonical:"play",
+   explanation:"let 뒤 <b>동사원형</b>. playing → <code class='eng'>play</code>."},
+  {id:23, unit:"사역동사", type:"주관식", inputs:1, topic:"get + to부정사",
+   body:`빈칸을 완성하시오. (도와주게 시켰다, help 사용)<br><code class="eng">I got my friend ___ me with the project.</code>`,
+   accept:["to help","to help me"], canonical:"to help",
+   explanation:"get은 목적격보어로 <b>to부정사</b>. got my friend <code class='eng'>to help</code>."},
+  {id:24, unit:"사역동사", type:"주관식", inputs:1, topic:"Let me know",
+   body:`빈칸에 알맞은 한 단어를 쓰시오. (내게 알려줘)<br><code class="eng">Please ___ me know.</code>`,
+   accept:["let"], canonical:"let",
+   explanation:"<code class='eng'>let me know</code> = '내게 알려줘'. let 뒤 원형 know."},
+  {id:25, unit:"사역동사", type:"주관식", inputs:1, topic:"고쳐쓰기 (have)",
+   body:`어색한 부분을 바르게 고쳐 쓰시오.<br><code class="eng">I had him to fix my phone.</code><br><span style="color:var(--muted)">→ had him ___</span>`,
+   accept:["fix","had him fix"], canonical:"fix",
+   explanation:"have(사역) 뒤 <b>동사원형</b>. to fix → <code class='eng'>fix</code>."},
+  {id:26, unit:"사역동사", type:"주관식", inputs:1, topic:"make + 형용사",
+   body:`빈칸에 알맞은 한 단어를 쓰시오. (그 소식은 우리를 슬프게 했다)<br><code class="eng">The news made us ___.</code>`,
+   accept:["sad"], canonical:"sad",
+   explanation:"make + 목적어 + <b>형용사</b>. made us <code class='eng'>sad</code>."},
+  {id:27, unit:"사역동사", type:"주관식", inputs:1, topic:"help 형태",
+   body:`괄호 안 동사를 알맞은 형태로 쓰시오. (두 가지 중 하나)<br><code class="eng">She helped me (carry) the bag.</code><br><span style="color:var(--muted)">→ helped me ___</span>`,
+   accept:["carry","to carry"], canonical:"carry (또는 to carry)",
+   explanation:"help 뒤엔 <code class='eng'>carry</code> 또는 <code class='eng'>to carry</code> 둘 다 OK!"},
+  {id:28, unit:"사역동사", type:"주관식", inputs:1, topic:"make 수동태",
+   body:`빈칸을 완성하시오. (페인트칠하게 됐다, paint)<br><code class="eng">The boys were made ___ the wall.</code>`,
+   accept:["to paint"], canonical:"to paint",
+   explanation:"사역 make의 <b>수동태</b>에서는 to부정사가 부활! were made <code class='eng'>to paint</code>."},
+  {id:29, unit:"사역동사", type:"주관식", inputs:1, topic:"let + 동사원형",
+   body:`빈칸에 알맞은 한 단어를 쓰시오. (엄마가 나를 자게 해주셨다)<br><code class="eng">My mom let me ___.</code>`,
+   accept:["sleep"], canonical:"sleep",
+   explanation:"let me <code class='eng'>sleep</code>. let 뒤 <b>동사원형</b>."},
+  {id:30, unit:"사역동사", type:"주관식", inputs:1, topic:"고쳐쓰기 (get)",
+   body:`어색한 부분을 바르게 고쳐 쓰시오.<br><code class="eng">I'll get him cut the grass.</code><br><span style="color:var(--muted)">→ get him ___</span>`,
+   accept:["to cut","get him to cut"], canonical:"to cut",
+   explanation:"get은 <b>to부정사</b>! cut → <code class='eng'>to cut</code>."},
+
+  // ===================== 단원 2 · 수동태 (31~60) =====================
+  {id:31, unit:"수동태", type:"객관식", topic:"현재 수동태",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">English ___ in many countries.</code>`,
+   choices:["speaks","is spoken","speaking","spoke","is speak"], answer:2,
+   explanation:"주어 English는 '말해지는' 대상 → 수동태 <b>be + p.p.</b> speak-spoke-spoken. <code class='eng'>is spoken</code>."},
+  {id:32, unit:"수동태", type:"객관식", topic:"과거 수동태",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">The window ___ by the boy yesterday.</code>`,
+   choices:["broke","is broken","was broken","breaks","was break"], answer:3,
+   explanation:"과거 수동태 <b>was/were + p.p.</b> break-broke-broken. <code class='eng'>was broken</code>."},
+  {id:33, unit:"수동태", type:"객관식", topic:"by 행위자",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">This picture ___ by Picasso.</code>`,
+   choices:["painted","was painted","was paint","painting","paints"], answer:2,
+   explanation:"'by ~'(~에 의해)가 있으면 수동태! paint-painted-painted. <code class='eng'>was painted</code>."},
+  {id:34, unit:"수동태", type:"객관식", topic:"복수 주어 과거",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">The cookies ___ by my grandmother.</code>`,
+   choices:["was made","made","were made","are make","is made"], answer:3,
+   explanation:"주어 cookies(복수) → <b>were</b>. make-made-made. <code class='eng'>were made</code>."},
+  {id:35, unit:"수동태", type:"객관식", topic:"미래 수동태",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">The work ___ tomorrow.</code>`,
+   choices:["will finished","will be finished","is finish","will finish","finished"], answer:2,
+   explanation:"미래 수동태는 <b>will be + p.p.</b> finish-finished. <code class='eng'>will be finished</code>."},
+  {id:36, unit:"수동태", type:"객관식", topic:"과거분사(p.p.)",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">The letter was ___ in English.</code>`,
+   choices:["write","wrote","written","writing","writes"], answer:3,
+   explanation:"수동태는 <b>과거분사(p.p.)</b>! write-wrote-<b>written</b>. was <code class='eng'>written</code>."},
+  {id:37, unit:"수동태", type:"객관식", topic:"어법 점검",
+   body:`다음 중 어법상 <b>어색한</b> 것은?`,
+   choices:["The song is loved by everyone.","The door was closed.","The book was wrote by him.","Rice is grown in Korea.","The room was cleaned."], answer:3,
+   explanation:"write의 p.p.는 <code class='eng'>written</code>! was <code class='eng'>written</code> by him이 맞아요 (wrote ✗)."},
+  {id:38, unit:"수동태", type:"객관식", topic:"능동→수동 전환",
+   body:`다음 문장을 수동태로 바르게 바꾼 것은?<br><code class="eng">Many people love this song.</code>`,
+   choices:["This song loves many people.","This song is loved by many people.","This song was love by many people.","This song loved by many people.","This song is love by many people."], answer:2,
+   explanation:"목적어(this song)를 주어로, <b>be + p.p. + by</b>. <code class='eng'>is loved by</code> many people."},
+  {id:39, unit:"수동태", type:"객관식", topic:"수동태 부정문",
+   body:`빈칸에 알맞은 것은? (청소되지 않는다)<br><code class="eng">This room ___ every day.</code>`,
+   choices:["isn't cleaned","doesn't clean","isn't clean","not cleaned","wasn't clean"], answer:1,
+   explanation:"수동태 부정은 be동사 뒤에 not. <code class='eng'>isn't cleaned</code> (= is not cleaned)."},
+  {id:40, unit:"수동태", type:"객관식", topic:"수동태 의문문",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">___ this computer made in Korea?</code>`,
+   choices:["Does","Did","Was","Is being","Has"], answer:3,
+   explanation:"수동태 의문문은 <b>be동사를 앞으로</b>! <code class='eng'>Was</code> this computer made ~? (made는 p.p.)"},
+  {id:41, unit:"수동태", type:"객관식", topic:"과거분사 taken",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">These photos ___ in Paris last summer.</code>`,
+   choices:["took","were taken","are take","taking","was taken"], answer:2,
+   explanation:"photos(복수) + 과거. take-took-<b>taken</b>. <code class='eng'>were taken</code>."},
+  {id:42, unit:"수동태", type:"객관식", topic:"현재 수동태",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">A new school ___ in our town.</code>`,
+   choices:["is built","builds","is build","built","building"], answer:1,
+   explanation:"build-built-<b>built</b>(p.p.). 현재 수동 <code class='eng'>is built</code>."},
+  {id:43, unit:"수동태", type:"객관식", topic:"과거분사 eaten",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">Breakfast ___ at 7 every morning.</code>`,
+   choices:["is eaten","eats","is eat","ate","eating"], answer:1,
+   explanation:"eat-ate-<b>eaten</b>. 현재 수동 <code class='eng'>is eaten</code>."},
+  {id:44, unit:"수동태", type:"객관식", topic:"과거 수동태",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">My lost dog ___ in the park.</code>`,
+   choices:["found","was found","is find","were found","finds"], answer:2,
+   explanation:"find-found-<b>found</b>(p.p.도 found). 단수 과거 <code class='eng'>was found</code>."},
+  {id:45, unit:"수동태", type:"객관식", topic:"어법 점검",
+   body:`다음 중 어법상 <b>알맞은</b> 것은?`,
+   choices:["The car washes by him.","The car is washed by him.","The car is wash by him.","The car washed by him.","The car being washed."], answer:2,
+   explanation:"<b>be + p.p. + by</b>. <code class='eng'>is washed by him</code>."},
+  {id:46, unit:"수동태", type:"객관식", topic:"과거분사 sold",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">All the tickets ___ out quickly.</code>`,
+   choices:["sold","were sold","was sold","are sell","selling"], answer:2,
+   explanation:"tickets(복수) + 과거. sell-sold-<b>sold</b>. <code class='eng'>were sold</code>."},
+  {id:47, unit:"수동태", type:"객관식", topic:"미래 수동태",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">The homework ___ by the students.</code>`,
+   choices:["will done","will be done","is do","will did","done"], answer:2,
+   explanation:"미래 수동 <b>will be + p.p.</b> do-did-<b>done</b>. <code class='eng'>will be done</code>."},
+  {id:48, unit:"수동태", type:"객관식", topic:"조동사 + 수동태",
+   body:`빈칸에 알맞은 것은? (풀릴 수 있다)<br><code class="eng">This problem ___ easily.</code>`,
+   choices:["can solved","can be solved","can solve","is can solved","can solving"], answer:2,
+   explanation:"조동사 + 수동태 = <b>조동사 + be + p.p.</b> <code class='eng'>can be solved</code>."},
+  {id:49, unit:"수동태", type:"객관식", topic:"과거분사 given",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">A present ___ to her on her birthday.</code>`,
+   choices:["gave","was given","is give","were given","giving"], answer:2,
+   explanation:"give-gave-<b>given</b>. 단수 present → <code class='eng'>was given</code>."},
+  {id:50, unit:"수동태", type:"객관식", topic:"어법 점검",
+   body:`다음 중 어법상 <b>어색한</b> 것은?`,
+   choices:["The cake was baked by mom.","The houses were built last year.","The song will be sung tonight.","The window is broke now.","Apples are sold here."], answer:4,
+   explanation:"break의 p.p.는 <code class='eng'>broken</code>! is <code class='eng'>broken</code>이 맞아요 (broke ✗)."},
+  {id:51, unit:"수동태", type:"주관식", inputs:1, topic:"고쳐쓰기 (p.p.)",
+   body:`어색한 부분을 바르게 고쳐 쓰시오.<br><code class="eng">The book was wrote by him.</code><br><span style="color:var(--muted)">→ was ___</span>`,
+   accept:["written"], canonical:"written",
+   explanation:"write의 과거분사는 <code class='eng'>written</code>."},
+  {id:52, unit:"수동태", type:"주관식", inputs:1, topic:"동사 형태 (과거 수동)",
+   body:`괄호 안 동사를 알맞은 형태로 쓰시오.<br><code class="eng">The telephone (invent) by Bell.</code><br><span style="color:var(--muted)">→ ___</span>`,
+   accept:["was invented"], canonical:"was invented",
+   explanation:"과거 수동 was + invented. <code class='eng'>was invented</code>."},
+  {id:53, unit:"수동태", type:"주관식", inputs:1, topic:"미래 수동태 영작",
+   body:`빈칸을 3단어로 완성하시오. (청소될 것이다, clean)<br><code class="eng">The room ___ tomorrow.</code>`,
+   accept:["will be cleaned"], canonical:"will be cleaned",
+   explanation:"미래 수동 <code class='eng'>will be cleaned</code>."},
+  {id:54, unit:"수동태", type:"주관식", inputs:1, topic:"능동→수동 전환",
+   body:`다음을 수동태로 바꿀 때 빈칸을 채우시오.<br><code class="eng">Tom cleaned the room.</code> → <code class="eng">The room ___ by Tom.</code>`,
+   accept:["was cleaned"], canonical:"was cleaned",
+   explanation:"목적어를 주어로, <b>was + cleaned + by Tom</b>."},
+  {id:55, unit:"수동태", type:"주관식", inputs:1, topic:"동사 형태 (과거 수동)",
+   body:`괄호 안 동사를 알맞은 형태로 쓰시오.<br><code class="eng">These pictures (take) last week.</code><br><span style="color:var(--muted)">→ ___</span>`,
+   accept:["were taken"], canonical:"were taken",
+   explanation:"복수 + 과거. take의 p.p. taken. <code class='eng'>were taken</code>."},
+  {id:56, unit:"수동태", type:"주관식", inputs:1, topic:"수동태 부정문",
+   body:`빈칸을 완성하시오. (먹지 않는다)<br><code class="eng">This food ___ in summer.</code>`,
+   accept:["is not eaten","isn't eaten"], canonical:"is not eaten",
+   explanation:"수동태 부정은 <b>be + not + p.p.</b> <code class='eng'>is not eaten</code>."},
+  {id:57, unit:"수동태", type:"주관식", inputs:1, topic:"수동태 의문문",
+   body:`빈칸에 알맞은 한 단어를 쓰시오. (네가 만들었니, make)<br><code class="eng">Was this cake ___ by you?</code>`,
+   accept:["made"], canonical:"made",
+   explanation:"수동태 의문문에서도 <b>p.p.</b>를 써요. Was ~ <code class='eng'>made</code>."},
+  {id:58, unit:"수동태", type:"주관식", inputs:1, topic:"조동사 + 수동태",
+   body:`빈칸을 3단어로 완성하시오. (말해질 수 있다, speak)<br><code class="eng">English ___ here.</code>`,
+   accept:["can be spoken"], canonical:"can be spoken",
+   explanation:"조동사 수동 <b>can be + p.p.</b> <code class='eng'>can be spoken</code>."},
+  {id:59, unit:"수동태", type:"주관식", inputs:1, topic:"by (전치사)",
+   body:`빈칸에 알맞은 전치사 한 단어를 쓰시오.<br><code class="eng">The novel was written ___ a famous writer.</code>`,
+   accept:["by"], canonical:"by",
+   explanation:"수동태에서 행위자 앞에는 <code class='eng'>by</code>(~에 의해)를 써요."},
+  {id:60, unit:"수동태", type:"주관식", inputs:1, topic:"현재 수동태 영작",
+   body:`빈칸을 2단어로 완성하시오. (이 차는 한국에서 만들어진다, make)<br><code class="eng">This car ___ in Korea.</code>`,
+   accept:["is made"], canonical:"is made",
+   explanation:"현재 수동 <code class='eng'>is made</code>."},
+
+  // ===================== 단원 3 · 지각동사 (61~90) =====================
+  {id:61, unit:"지각동사", type:"객관식", topic:"see + 동사원형",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">I saw him ___ the street.</code>`,
+   choices:["to cross","crossed","cross","crosses","to crossing"], answer:3,
+   explanation:"지각동사 see + 목적어 + <b>동사원형</b>(또는 -ing). saw him <code class='eng'>cross</code>. to부정사는 ✗!"},
+  {id:62, unit:"지각동사", type:"객관식", topic:"hear + 동사원형",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">I heard someone ___ my name.</code>`,
+   choices:["to call","call","called","calls","to calling"], answer:2,
+   explanation:"지각동사 hear + <b>동사원형</b>. heard someone <code class='eng'>call</code>."},
+  {id:63, unit:"지각동사", type:"객관식", topic:"watch + -ing",
+   body:`빈칸에 알맞은 것은? (놀고 있는 중)<br><code class="eng">We watched the children ___ in the park.</code>`,
+   choices:["to play","played","playing","to playing","plays"], answer:3,
+   explanation:"watch + 목적어 + 동사원형/<b>-ing</b>. 진행 중인 동작은 -ing. watched the children <code class='eng'>playing</code>."},
+  {id:64, unit:"지각동사", type:"객관식", topic:"feel + 동사원형",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">I felt something ___ my leg.</code>`,
+   choices:["to touch","touch","touched","touches","to touching"], answer:2,
+   explanation:"지각동사 feel + <b>동사원형</b>. felt something <code class='eng'>touch</code>."},
+  {id:65, unit:"지각동사", type:"객관식", topic:"어법 점검",
+   body:`다음 중 어법상 <b>어색한</b> 것은?`,
+   choices:["I saw her dance.","We heard him sing.","She watched them to swim.","I felt the house shake.","They saw me run."], answer:3,
+   explanation:"지각동사 뒤엔 <b>to부정사 ✗</b>! watched them <code class='eng'>swim</code>(또는 swimming). to swim ✗."},
+  {id:66, unit:"지각동사", type:"객관식", topic:"listen to + 동사원형/-ing",
+   body:`빈칸에 알맞은 것은? (노래하는 중)<br><code class="eng">I listened to the birds ___.</code>`,
+   choices:["to sing","sang","singing","to singing","sings"], answer:3,
+   explanation:"지각동사 listen to + 원형/-ing. 노래하는 중 → <code class='eng'>singing</code>."},
+  {id:67, unit:"지각동사", type:"객관식", topic:"notice + -ing",
+   body:`빈칸에 알맞은 것은? (서 있는 모습)<br><code class="eng">She noticed a man ___ at the door.</code>`,
+   choices:["to stand","standing","to standing","stands","stoods"], answer:2,
+   explanation:"notice도 지각동사. 서 있는 모습 → <code class='eng'>standing</code>(원형 stand도 OK)."},
+  {id:68, unit:"지각동사", type:"객관식", topic:"see + 동사원형",
+   body:`우리말과 같은 뜻의 문장은?<br><span style="color:var(--muted)">나는 그가 들어오는 것을 보았다.</span>`,
+   choices:["I saw he come in.","I saw him to come in.","I saw him come in.","I saw him comes in.","I saw him came in."], answer:3,
+   explanation:"지각동사 see + 목적어(him) + <b>동사원형</b>. saw <code class='eng'>him come</code> in."},
+  {id:69, unit:"지각동사", type:"객관식", topic:"hear + -ing",
+   body:`빈칸에 알맞은 것은? (울고 있는 중)<br><code class="eng">I heard a baby ___ next door.</code>`,
+   choices:["to cry","cried","crying","to crying","cries"], answer:3,
+   explanation:"진행 중인 동작 → -ing. heard a baby <code class='eng'>crying</code>."},
+  {id:70, unit:"지각동사", type:"객관식", topic:"지각동사 고르기",
+   body:`빈칸에 알맞은 것은? (그녀가 연주하는 걸 들었다)<br><code class="eng">I ___ her play the piano.</code>`,
+   choices:["heard","listened","sounded","said","told"], answer:1,
+   explanation:"'her <code class='eng'>play</code>'처럼 목적어+동사원형을 취하는 지각동사 <b>heard</b>. listen은 listen <u>to</u>가 필요해요."},
+  {id:71, unit:"지각동사", type:"객관식", topic:"watch + 동사원형",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">They watched the sun ___ down.</code>`,
+   choices:["to go","goes","go","went","to going"], answer:3,
+   explanation:"watch + 목적어 + <b>동사원형</b>. watched the sun <code class='eng'>go</code> down."},
+  {id:72, unit:"지각동사", type:"객관식", topic:"feel + -ing",
+   body:`빈칸에 알맞은 것은? (뛰고 있는 중)<br><code class="eng">I could feel my heart ___ fast.</code>`,
+   choices:["to beat","beats","beating","to beating","beaten"], answer:3,
+   explanation:"진행 중 → feel + <b>-ing</b>. feel my heart <code class='eng'>beating</code>."},
+  {id:73, unit:"지각동사", type:"객관식", topic:"어법 점검",
+   body:`다음 중 어법상 <b>알맞은</b> 것은?`,
+   choices:["I saw him to fall.","I saw him fell.","I saw him falls.","I saw him fall.","I saw he fall."], answer:4,
+   explanation:"see + 목적어(him) + <b>동사원형</b>. <code class='eng'>saw him fall</code>. to fall ✗, fell/falls ✗, he ✗."},
+  {id:74, unit:"지각동사", type:"객관식", topic:"see + -ing",
+   body:`빈칸에 알맞은 것은? (달려가고 있는 중)<br><code class="eng">I saw a dog ___ across the road.</code>`,
+   choices:["to run","ran","running","to running","runs"], answer:3,
+   explanation:"진행 중 → -ing. saw a dog <code class='eng'>running</code>."},
+  {id:75, unit:"지각동사", type:"객관식", topic:"hear (들어갈 수 없는 것)",
+   body:`빈칸에 <b>들어갈 수 없는</b> 것은?<br><code class="eng">We heard the bell ___.</code>`,
+   choices:["ring","ringing","sound","to ring","stop"], answer:4,
+   explanation:"지각동사 hear 뒤엔 원형/-ing OK. <code class='eng'>to ring</code>(to부정사)만 ✗이에요."},
+  {id:76, unit:"지각동사", type:"객관식", topic:"watch + 동사원형/-ing",
+   body:`우리말과 같은 뜻의 문장은?<br><span style="color:var(--muted)">나는 그들이 춤추는 것을 지켜봤다.</span>`,
+   choices:["I watched them to dance.","I watched them dancing.","I watched they dancing.","I watched them danced.","I watched them dances."], answer:2,
+   explanation:"watch + 목적어 + 원형/-ing. <code class='eng'>watched them dancing</code>(또는 dance)."},
+  {id:77, unit:"지각동사", type:"객관식", topic:"feel + 동사원형",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">We felt the ground ___ during the earthquake.</code>`,
+   choices:["to shake","shook","shake","shakes","to shaking"], answer:3,
+   explanation:"feel + 목적어 + <b>동사원형</b>. felt the ground <code class='eng'>shake</code>."},
+  {id:78, unit:"지각동사", type:"객관식", topic:"어법 점검",
+   body:`다음 중 어법상 <b>어색한</b> 것은?`,
+   choices:["I heard them laugh.","She saw the boy jump.","We watched it raining.","He felt a bug to crawl.","I saw her smile."], answer:4,
+   explanation:"지각동사 feel 뒤 to부정사 ✗! felt a bug <code class='eng'>crawl</code>(또는 crawling)."},
+  {id:79, unit:"지각동사", type:"객관식", topic:"see + 동사원형",
+   body:`빈칸에 알맞은 것은?<br><code class="eng">Did you see the train ___?</code>`,
+   choices:["to leave","left","leave","leaves","to leaving"], answer:3,
+   explanation:"see + 목적어 + <b>동사원형</b>. see the train <code class='eng'>leave</code>."},
+  {id:80, unit:"지각동사", type:"객관식", topic:"listen to + -ing",
+   body:`빈칸에 알맞은 것은? (떨어지는 중)<br><code class="eng">I love listening to the rain ___ on the roof.</code>`,
+   choices:["to fall","fell","falling","to falling","falls"], answer:3,
+   explanation:"진행 중 → -ing. the rain <code class='eng'>falling</code>(원형 fall도 OK)."},
+  {id:81, unit:"지각동사", type:"주관식", inputs:1, topic:"고쳐쓰기 (see)",
+   body:`어색한 부분을 바르게 고쳐 쓰시오.<br><code class="eng">I saw him to enter the house.</code><br><span style="color:var(--muted)">→ saw him ___</span>`,
+   accept:["enter","saw him enter"], canonical:"enter",
+   explanation:"지각동사 see 뒤 <b>동사원형</b>! to enter → <code class='eng'>enter</code>."},
+  {id:82, unit:"지각동사", type:"주관식", inputs:1, topic:"고쳐쓰기 (hear)",
+   body:`어색한 부분을 바르게 고쳐 쓰시오.<br><code class="eng">We heard her to sing.</code><br><span style="color:var(--muted)">→ heard her ___</span>`,
+   accept:["sing","heard her sing"], canonical:"sing",
+   explanation:"hear + <b>동사원형</b>. to sing → <code class='eng'>sing</code>."},
+  {id:83, unit:"지각동사", type:"주관식", inputs:1, topic:"동사 형태 (-ing)",
+   body:`괄호 안 동사를 -ing 형태로 쓰시오. (뛰어다니는 중)<br><code class="eng">I saw the kids (run) around.</code><br><span style="color:var(--muted)">→ saw the kids ___</span>`,
+   accept:["running"], canonical:"running",
+   explanation:"뛰어다니는 중 → <code class='eng'>running</code>."},
+  {id:84, unit:"지각동사", type:"주관식", inputs:1, topic:"feel + 동사원형/-ing",
+   body:`빈칸을 완성하시오. (비가 내 얼굴에 떨어지는 것을 느꼈다, fall)<br><code class="eng">I felt the rain ___ on my face.</code>`,
+   accept:["fall","falling"], canonical:"fall (또는 falling)",
+   explanation:"feel + 원형/-ing. <code class='eng'>fall</code> 또는 <code class='eng'>falling</code> 둘 다 OK."},
+  {id:85, unit:"지각동사", type:"주관식", inputs:1, topic:"고쳐쓰기 (목적격)",
+   body:`어색한 부분을 바르게 고쳐 쓰시오.<br><code class="eng">I saw he cross the road.</code><br><span style="color:var(--muted)">→ saw ___ cross</span>`,
+   accept:["him"], canonical:"him",
+   explanation:"지각동사 뒤 목적어는 <b>목적격</b>! he → <code class='eng'>him</code>."},
+  {id:86, unit:"지각동사", type:"주관식", inputs:1, topic:"watch + 동사원형/-ing",
+   body:`괄호 안 동사를 알맞은 형태로 쓰시오. (play)<br><code class="eng">We watched the players ___ soccer.</code>`,
+   accept:["play","playing"], canonical:"play (또는 playing)",
+   explanation:"watch + 목적어 + 원형/-ing. <code class='eng'>play</code> 또는 playing."},
+  {id:87, unit:"지각동사", type:"주관식", inputs:1, topic:"hear + 동사원형/-ing",
+   body:`괄호 안 동사를 알맞은 형태로 쓰시오. (knock)<br><code class="eng">I heard someone (knock) on the door.</code><br><span style="color:var(--muted)">→ heard someone ___</span>`,
+   accept:["knock","knocking"], canonical:"knock (또는 knocking)",
+   explanation:"hear + 원형/-ing. <code class='eng'>knock</code> 또는 knocking."},
+  {id:88, unit:"지각동사", type:"주관식", inputs:1, topic:"지각동사 채우기 (feel)",
+   body:`빈칸에 알맞은 한 단어를 쓰시오. (느꼈다)<br><code class="eng">I ___ the ground shake.</code>`,
+   accept:["felt"], canonical:"felt",
+   explanation:"'느끼다'의 과거 <code class='eng'>felt</code>. feel + 목적어 + 동사원형."},
+  {id:89, unit:"지각동사", type:"주관식", inputs:1, topic:"hear + -ing 영작",
+   body:`빈칸을 완성하시오. (그가 노래하고 있는 것을 들었다, sing → 진행형)<br><code class="eng">I heard him ___.</code>`,
+   accept:["singing"], canonical:"singing",
+   explanation:"진행 중 → -ing. heard him <code class='eng'>singing</code>."},
+  {id:90, unit:"지각동사", type:"주관식", inputs:1, topic:"고쳐쓰기 (watch)",
+   body:`어색한 부분을 바르게 고쳐 쓰시오.<br><code class="eng">She watched them to play.</code><br><span style="color:var(--muted)">→ watched them ___</span>`,
+   accept:["play","playing","watched them play"], canonical:"play",
+   explanation:"지각동사 watch 뒤 to부정사 ✗! to play → <code class='eng'>play</code>(또는 playing)."}
+];
+
+// ============== STATE ==============
+let state = { answers:{}, correct:{}, startTime:null, endTime:null };
+
+// ============== NAV ==============
+function show(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// ============== START (name required) ==============
+const nameInput = document.getElementById('studentName');
+const startBtn = document.getElementById('startBtn');
+function refreshStart(){
+  const ok = nameInput.value.trim().length > 0;
+  startBtn.disabled = !ok;
+  startBtn.textContent = ok ? '숙제 시작하기 →' : '이름을 입력하면 시작돼요';
+}
+nameInput.addEventListener('input', refreshStart);
+nameInput.addEventListener('keydown', e => { if(e.key==='Enter' && nameInput.value.trim()) startQuiz(); });
+
+function startQuiz(){
+  const name = nameInput.value.trim();
+  if(!name){ showToast('이름을 먼저 입력해 주세요 ✍️'); nameInput.focus(); return; }
+  STUDENT = name;
+  state.startTime = Date.now();
+  renderQuiz();
+  show('screen-quiz');
+}
+
+// ============== QUIZ RENDERING ==============
+const UNIT_SUB = {
+  "사역동사":"make · have · let · get · help",
+  "수동태":"be동사 + 과거분사(p.p.)",
+  "지각동사":"see · hear · feel · watch · listen to"
+};
+function renderQuiz(){
+  const list = document.getElementById('quizList');
+  list.innerHTML = '';
+  const total = QUESTIONS.length;
+  let lastUnit = null;
+  let unitNo = 0;
+  QUESTIONS.forEach((q) => {
+    if(q.unit !== lastUnit){
+      unitNo++;
+      const sec = document.createElement('div');
+      sec.className = 'section-header';
+      sec.innerHTML = `<div class="stitle">${unitNo}. ${q.unit} <span style="font-weight:700;font-size:.9rem;opacity:.9">(30문제)</span></div>
+        <div class="ssub">${UNIT_SUB[q.unit]||''}</div>`;
+      list.appendChild(sec);
+      lastUnit = q.unit;
+    }
+    const card = document.createElement('div');
+    card.className = 'qcard';
+    card.id = 'q' + q.id;
+    let meta = `<div class="qmeta">
+      <span class="pill ${q.type==='객관식'?'teal':'amber'}">${q.type}</span>
+      <span class="pill ink">${q.unit}</span>
+      <span class="pill amber">${q.topic}</span>
+    </div>`;
+    let inner = `${meta}<div class="qnum">문제 ${q.id} / ${total}</div><div class="qbody">${q.body}</div>`;
+    if(q.type === '객관식'){
+      inner += `<div class="choices">`;
+      q.choices.forEach((c,i) => {
+        inner += `<div class="choice" data-idx="${i+1}" onclick="answerChoice(${q.id}, ${i+1})">
+          <span class="num">${i+1}.</span><span>${escapeHtml(c)}</span></div>`;
+      });
+      inner += `</div>
+      <div class="feedback" id="fb${q.id}"></div>
+      <div class="explanation" id="ex${q.id}"></div>`;
+    } else {
+      inner += `<input class="short" placeholder="여기에 답을 적어요" />
+      <div class="submitrow"><button class="mini" onclick="submitText(${q.id})">제출</button></div>
+      <div class="feedback" id="fb${q.id}"></div>
+      <div class="explanation" id="ex${q.id}"></div>`;
+    }
+    card.innerHTML = inner;
+    list.appendChild(card);
+  });
+}
+
+function escapeHtml(s){
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ============== ANSWER HANDLING ==============
+// 객관식: 선택 즉시 채점 → 0.25초 뒤 자동으로 다음 문제로
+function answerChoice(qid, idx){
+  if(state.answers[qid] !== undefined) return;
+  const card = document.getElementById('q'+qid);
+  card.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
+  card.querySelector(`.choice[data-idx="${idx}"]`).classList.add('selected');
+  const q = QUESTIONS.find(x => x.id === qid);
+  const ok = (idx === q.answer);
+  state.answers[qid] = idx;
+  state.correct[qid] = ok;
+  card.querySelectorAll('.choice').forEach(c => c.classList.add('locked'));
+  const fb = card.querySelector('#fb'+qid);
+  fb.className = 'feedback show ' + (ok ? 'ok':'ng');
+  fb.textContent = ok ? '정답! 🎉 (해설은 다 푼 뒤 공개)' : '체크 완료 ✏️ (해설은 다 푼 뒤 공개)';
+  afterAnswer();
+  if(Object.keys(state.answers).length < QUESTIONS.length){
+    setTimeout(() => scrollToNext(qid), 250);
+  }
+}
+
+// 다음 미답 문제로 부드럽게 이동
+function scrollToNext(qid){
+  const ids = QUESTIONS.map(q => q.id);
+  const i = ids.indexOf(qid);
+  let target = null;
+  for(let j=i+1; j<ids.length; j++){ if(state.answers[ids[j]]===undefined){ target=ids[j]; break; } }
+  if(target===null){ for(let j=0; j<i; j++){ if(state.answers[ids[j]]===undefined){ target=ids[j]; break; } } }
+  if(target===null) return;
+  const el = document.getElementById('q'+target);
+  if(!el) return;
+  el.scrollIntoView({behavior:'smooth', block:'center'});
+  const tq = QUESTIONS.find(x => x.id === target);
+  if(tq.type === '주관식'){
+    const inp = el.querySelector('input.short');
+    if(inp) setTimeout(() => inp.focus({preventScroll:true}), 400);
+  }
+}
+
+function normalize(s){
+  return s.trim().toLowerCase().replace(/\s+/g,' ').replace(/[.,!?]/g,'').replace(/[’‘`]/g,"'");
+}
+
+function submitText(qid){
+  if(state.answers[qid] !== undefined) return;
+  const card = document.getElementById('q'+qid);
+  const input = card.querySelector('input.short');
+  const ans = input.value.trim();
+  if(!ans){ showToast('답을 입력해 주세요'); return; }
+  const q = QUESTIONS.find(x => x.id === qid);
+  const norm = normalize(ans);
+  const ok = q.accept.some(a => normalize(a) === norm);
+  state.answers[qid] = ans;
+  state.correct[qid] = ok;
+  input.disabled = true;
+  card.querySelector('.mini').classList.add('disabled');
+  const fb = card.querySelector('#fb'+qid);
+  fb.className = 'feedback show ' + (ok ? 'ok':'ng');
+  fb.textContent = ok ? '정답! 🎉 (해설은 다 푼 뒤 공개)' : '제출 완료 ✏️ (해설은 다 푼 뒤 공개)';
+  afterAnswer();
+  if(Object.keys(state.answers).length < QUESTIONS.length){
+    setTimeout(() => scrollToNext(qid), 250);
+  }
+}
+
+function afterAnswer(){
+  const total = QUESTIONS.length;
+  const done = Object.keys(state.answers).length;
+  document.getElementById('progressLabel').textContent = `진행 ${done} / ${total}`;
+  document.getElementById('progressFill').style.width = (done/total*100) + '%';
+  if(done === total){
+    state.endTime = Date.now();
+    QUESTIONS.forEach(q => {
+      const ex = document.getElementById('ex'+q.id);
+      const correctAns = q.canonical || (q.choices ? q.choices[q.answer-1] : '');
+      ex.innerHTML = `<strong>✅ 정답: ${escapeHtml(correctAns)}</strong><br>${q.explanation}`;
+      ex.classList.add('show');
+    });
+    document.getElementById('quizEndNote').style.display = 'block';
+    setTimeout(showResult, 1600);
+  }
+}
+
+// ============== RESULT ==============
+function unitScore(unit){
+  const qs = QUESTIONS.filter(q => q.unit === unit);
+  const c = qs.filter(q => state.correct[q.id]).length;
+  return c + ' / ' + qs.length;
+}
+function showResult(){
+  const total = QUESTIONS.length;
+  const correct = Object.values(state.correct).filter(v => v).length;
+  const wrong = total - correct;
+  const rate = Math.round(correct/total*100);
+  const minutes = Math.max(1, Math.round((state.endTime - state.startTime)/60000));
+  document.getElementById('resultName').textContent = `${STUDENT} 학생 점수`;
+  document.getElementById('finalScore').textContent = `${correct} / ${total}`;
+  document.getElementById('finalRate').textContent = `정답률 ${rate}%`;
+  document.getElementById('finalCorrect').textContent = `${correct}개`;
+  document.getElementById('finalWrong').textContent = `${wrong}개`;
+  document.getElementById('finalTime').textContent = `${minutes}분`;
+  document.getElementById('u1score').textContent = unitScore('사역동사');
+  document.getElementById('u2score').textContent = unitScore('수동태');
+  document.getElementById('u3score').textContent = unitScore('지각동사');
+  document.getElementById('kakaoPreview').textContent = buildMessage(correct, total, wrong, rate, minutes);
+  show('screen-result');
+}
+
+function buildMessage(correct, total, wrong, rate, minutes){
+  let msg = `안녕하세요 ${TEACHER}님! 🌸\n\n`;
+  if(rate === 100) msg += `와! ${STUDENT} 학생, 90문제를 전부 다 맞혔어요!! 정말 대단해요 🌟\n\n`;
+  else if(rate >= 80) msg += `${STUDENT} 학생 정말 잘했어요! 거의 다 맞혔네요 👍\n\n`;
+  else if(rate >= 60) msg += `${STUDENT} 학생 잘 풀었어요! 몇 개만 더 보면 완벽해요 💪\n\n`;
+  else if(rate >= 40) msg += `${STUDENT} 학생, 90문제 끝까지 푼 게 정말 멋져요! 오답 같이 보면 금방 늘어요 🌱\n\n`;
+  else msg += `어려운 문법 90문제 끝까지 푼 ${STUDENT} 학생, 박수! 같이 차근차근 봐요 🤗\n\n`;
+
+  msg += `📊 영어 숙제 결과 (사역동사·수동태·지각동사)\n`;
+  msg += `━━━━━━━━━━━━━━━\n`;
+  msg += `학생: ${STUDENT}\n`;
+  msg += `총 문제: ${total}개\n`;
+  msg += `정답: ${correct}개 / 오답: ${wrong}개\n`;
+  msg += `정답률: ${rate}%\n`;
+  msg += `풀이 시간: ${minutes}분\n`;
+  msg += `─ 단원별 ─\n`;
+  msg += `① 사역동사: ${unitScore('사역동사')}\n`;
+  msg += `② 수동태: ${unitScore('수동태')}\n`;
+  msg += `③ 지각동사: ${unitScore('지각동사')}\n`;
+  msg += `━━━━━━━━━━━━━━━\n\n`;
+
+  if(correct === total){
+    msg += `🎉🎉 모든 문제를 다 맞혔어요!! 🎉🎉\n${STUDENT} 학생 정말 자랑스러워요 ✨\n\n`;
+  } else {
+    msg += `📝 오답 정리\n\n`;
+    QUESTIONS.forEach(q => {
+      if(state.correct[q.id]) return;
+      const myAns = state.answers[q.id];
+      const correctAns = q.canonical || (q.choices ? q.choices[q.answer-1] : '');
+      const myAnsText = (q.type === '객관식') ? `${myAns}번 (${q.choices[myAns-1]})` : myAns;
+      msg += `❌ 문제 ${q.id} [${q.unit}]\n`;
+      msg += `유형: ${q.topic}\n`;
+      msg += `📝 ${STUDENT} 답: ${myAnsText}\n`;
+      msg += `✅ 정답: ${correctAns}\n`;
+      msg += `💡 해설: ${stripHtml(q.explanation)}\n`;
+      msg += `👉 다음엔 꼭 맞힐 수 있어요!\n`;
+      msg += `━━━━━━━━━━━━━━━\n\n`;
+    });
+  }
+  msg += `오늘도 수고 많았어요~ 😊\n- 영핏 지나티처`;
+  return msg;
+}
+
+function stripHtml(s){
+  return s.replace(/<[^>]+>/g,'').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&').replace(/&#39;/g,"'").replace(/&quot;/g,'"');
+}
+
+// ============== COPY ==============
+function copyMessage(){
+  const text = document.getElementById('kakaoPreview').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('메시지가 복사됐어요! 카톡에 붙여넣기 하세요 📋');
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    showToast('메시지가 복사됐어요! 카톡에 붙여넣기 하세요 📋');
+  });
+}
+
+function showToast(text){
+  const t = document.getElementById('toast');
+  t.textContent = text; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+// ============== KEYBOARD ==============
+document.addEventListener('keydown', e => {
+  const quiz = document.getElementById('screen-quiz');
+  if(!quiz.classList.contains('active')) return;
+  const cards = Array.from(document.querySelectorAll('.qcard'));
+  const center = window.innerHeight/2;
+  let best=null, bestDist=Infinity;
+  cards.forEach(c => {
+    const q = QUESTIONS.find(x => x.id === parseInt(c.id.slice(1)));
+    if(!q || state.answers[q.id] !== undefined) return;
+    const rect = c.getBoundingClientRect();
+    if(rect.bottom < 0 || rect.top > window.innerHeight) return;
+    const dist = Math.abs((rect.top+rect.bottom)/2 - center);
+    if(dist < bestDist){ bestDist=dist; best=q; }
+  });
+  if(!best) return;
+  if(best.type === '객관식'){
+    if(/^[1-5]$/.test(e.key)){
+      const n = parseInt(e.key);
+      if(n <= best.choices.length){ e.preventDefault(); answerChoice(best.id, n); }
+    }
+  } else {
+    if(e.key === 'Enter' && e.target.tagName === 'INPUT'){ e.preventDefault(); submitText(best.id); }
+  }
+});
+
+// ============== INIT ==============
+startBtn.addEventListener('click', startQuiz);
+document.getElementById('copyBtn').addEventListener('click', copyMessage);
+refreshStart();
+</script>
+</body>
+</html>
