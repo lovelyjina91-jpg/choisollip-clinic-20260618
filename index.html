@@ -96,6 +96,10 @@
   .submitrow{display:flex;gap:8px;margin-top:10px;align-items:center}
   .submitrow .mini{background:var(--teal);color:#fff;border:none;padding:9px 14px;border-radius:10px;font-weight:800;cursor:pointer;font-family:inherit}
   .submitrow .mini.disabled{background:#cfd4dc;cursor:not-allowed}
+  .idkrow{margin-top:8px}
+  .idk{background:#fff;color:var(--muted);border:2px dashed #cfd4dc;padding:8px 14px;border-radius:10px;font-weight:800;cursor:pointer;font-family:inherit;font-size:.9rem}
+  .idk:hover{border-color:var(--amber);color:#8a6310;background:#fdf6e9}
+  .idk.disabled{opacity:.5;cursor:not-allowed}
   .feedback{margin-top:8px;font-size:.92rem;font-weight:700;padding:6px 10px;border-radius:8px;display:none}
   .feedback.show{display:block}
   .feedback.ok{background:#e6f9f0;color:#0a7a4e}
@@ -653,11 +657,12 @@ function renderQuiz(){
           <span class="num">${i+1}.</span><span>${escapeHtml(c)}</span></div>`;
       });
       inner += `</div>
+      <div class="idkrow"><button class="idk" id="idk${q.id}" onclick="markUnknown(${q.id})">🤔 모름</button></div>
       <div class="feedback" id="fb${q.id}"></div>
       <div class="explanation" id="ex${q.id}"></div>`;
     } else {
       inner += `<input class="short" placeholder="여기에 답을 적어요" />
-      <div class="submitrow"><button class="mini" onclick="submitText(${q.id})">제출</button></div>
+      <div class="submitrow"><button class="mini" onclick="submitText(${q.id})">제출</button><button class="idk" id="idk${q.id}" onclick="markUnknown(${q.id})">🤔 모름</button></div>
       <div class="feedback" id="fb${q.id}"></div>
       <div class="explanation" id="ex${q.id}"></div>`;
     }
@@ -729,6 +734,32 @@ function submitText(qid){
   const fb = card.querySelector('#fb'+qid);
   fb.className = 'feedback show ' + (ok ? 'ok':'ng');
   fb.textContent = ok ? '정답! 🎉 (해설은 다 푼 뒤 공개)' : '제출 완료 ✏️ (해설은 다 푼 뒤 공개)';
+  afterAnswer();
+  if(Object.keys(state.answers).length < QUESTIONS.length){
+    setTimeout(() => scrollToNext(qid), 250);
+  }
+}
+
+// 모름: 오답으로 기록하고 잠근 뒤 다음 문제로
+function markUnknown(qid){
+  if(state.answers[qid] !== undefined) return;
+  const card = document.getElementById('q'+qid);
+  const q = QUESTIONS.find(x => x.id === qid);
+  state.answers[qid] = '모름';
+  state.correct[qid] = false;
+  if(q.type === '객관식'){
+    card.querySelectorAll('.choice').forEach(c => c.classList.add('locked'));
+  } else {
+    const input = card.querySelector('input.short');
+    if(input) input.disabled = true;
+    const mini = card.querySelector('.mini');
+    if(mini) mini.classList.add('disabled');
+  }
+  const idk = card.querySelector('#idk'+qid);
+  if(idk) idk.classList.add('disabled');
+  const fb = card.querySelector('#fb'+qid);
+  fb.className = 'feedback show ng';
+  fb.textContent = '모름 체크 🤔 (해설은 다 푼 뒤 꼭 확인해요!)';
   afterAnswer();
   if(Object.keys(state.answers).length < QUESTIONS.length){
     setTimeout(() => scrollToNext(qid), 250);
@@ -807,7 +838,8 @@ function buildMessage(correct, total, wrong, rate, minutes){
       if(state.correct[q.id]) return;
       const myAns = state.answers[q.id];
       const correctAns = q.canonical || (q.choices ? q.choices[q.answer-1] : '');
-      const myAnsText = (q.type === '객관식') ? `${myAns}번 (${q.choices[myAns-1]})` : myAns;
+      const myAnsText = (myAns === '모름') ? '🤔 모름(모르겠다고 표시)'
+        : (q.type === '객관식') ? `${myAns}번 (${q.choices[myAns-1]})` : myAns;
       msg += `❌ 문제 ${q.id} [${q.unit}]\n`;
       msg += `유형: ${q.topic}\n`;
       msg += `📝 ${STUDENT} 답: ${myAnsText}\n`;
@@ -832,48 +864,4 @@ function copyMessage(){
     showToast('메시지가 복사됐어요! 카톡에 붙여넣기 하세요 📋');
   }).catch(() => {
     const ta = document.createElement('textarea');
-    ta.value = text; document.body.appendChild(ta); ta.select();
-    document.execCommand('copy'); document.body.removeChild(ta);
-    showToast('메시지가 복사됐어요! 카톡에 붙여넣기 하세요 📋');
-  });
-}
-
-function showToast(text){
-  const t = document.getElementById('toast');
-  t.textContent = text; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2400);
-}
-
-// ============== KEYBOARD ==============
-document.addEventListener('keydown', e => {
-  const quiz = document.getElementById('screen-quiz');
-  if(!quiz.classList.contains('active')) return;
-  const cards = Array.from(document.querySelectorAll('.qcard'));
-  const center = window.innerHeight/2;
-  let best=null, bestDist=Infinity;
-  cards.forEach(c => {
-    const q = QUESTIONS.find(x => x.id === parseInt(c.id.slice(1)));
-    if(!q || state.answers[q.id] !== undefined) return;
-    const rect = c.getBoundingClientRect();
-    if(rect.bottom < 0 || rect.top > window.innerHeight) return;
-    const dist = Math.abs((rect.top+rect.bottom)/2 - center);
-    if(dist < bestDist){ bestDist=dist; best=q; }
-  });
-  if(!best) return;
-  if(best.type === '객관식'){
-    if(/^[1-5]$/.test(e.key)){
-      const n = parseInt(e.key);
-      if(n <= best.choices.length){ e.preventDefault(); answerChoice(best.id, n); }
-    }
-  } else {
-    if(e.key === 'Enter' && e.target.tagName === 'INPUT'){ e.preventDefault(); submitText(best.id); }
-  }
-});
-
-// ============== INIT ==============
-startBtn.addEventListener('click', startQuiz);
-document.getElementById('copyBtn').addEventListener('click', copyMessage);
-refreshStart();
-</script>
-</body>
-</html>
+    ta.value = text; document.body.appendChild(ta); ta.selec
