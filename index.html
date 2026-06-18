@@ -250,7 +250,7 @@ const QUESTIONS = [
   {id:7, unit:"사역동사", type:"객관식", topic:"let (허락하다)",
    body:`우리말과 같은 뜻의 문장은?<br><span style="color:var(--muted)">엄마가 내가 밖에 나가게 해주셨다.</span>`,
    choices:["My mom made me go out.","My mom let me go out.","My mom had me to go out.","My mom got me go out.","My mom let me to go out."], answer:2,
-   explanation:"'허락하다'는 <b>let</b>! let me <code class='eng'>go</code>(원형). ④ get은 to go여야 하고, ⑤도 to go라서 ✗."},
+   explanation:"'허락하다'는 <b>let</b>이에요. let me <code class='eng'>go</code>(원형)! <code class='eng'>made me go</code>는 '나가게 시켰다'는 뜻이라 어색하고, <code class='eng'>got me go</code>(get은 to go여야 함)와 <code class='eng'>let me to go</code>(to ✗)는 어법상 틀려요."},
   {id:8, unit:"사역동사", type:"객관식", topic:"어법 점검",
    body:`다음 중 어법상 <b>어색한</b> 것은?`,
    choices:["My sister made me laugh.","They let us use the room.","She had the man fix the car.","The coach made them to run.","We let the dog sleep inside."], answer:4,
@@ -286,11 +286,11 @@ const QUESTIONS = [
   {id:16, unit:"사역동사", type:"객관식", topic:"have (시키다)",
    body:`우리말과 같은 뜻의 문장은?<br><span style="color:var(--muted)">나는 미용사가 내 머리를 자르게 했다.</span>`,
    choices:["I had the hairdresser cut my hair.","I had the hairdresser to cut my hair.","I made the hairdresser to cut my hair.","I let the hairdresser cutting my hair.","I got the hairdresser cut my hair."], answer:1,
-   explanation:"have + 사람 + <b>동사원형</b>. had the hairdresser <code class='eng'>cut</code>. ⑤ get은 to cut이어야 하므로 ✗."},
+   explanation:"have + 사람 + <b>동사원형</b>. <code class='eng'>had the hairdresser cut</code>이 정답! <code class='eng'>got the hairdresser cut</code>은 get이라 to cut이어야 하고, to cut·cutting이 붙은 나머지도 ✗이에요."},
   {id:17, unit:"사역동사", type:"객관식", topic:"어법 점검",
    body:`다음 중 어법상 <b>알맞은</b> 것은?`,
    choices:["She got me carry it.","She made me to carry it.","She let me to carry it.","She had me carry it.","She help me carry it."], answer:4,
-   explanation:"④ had me <code class='eng'>carry</code>(원형)가 정답! ① get은 to carry, ②③ make/let은 원형(to ✗), ⑤는 helps여야 해요."},
+   explanation:"<code class='eng'>had me carry</code>(원형)가 정답! <code class='eng'>got me carry</code>는 get이라 to carry, <code class='eng'>made/let me to carry</code>는 원형이라 to가 ✗, <code class='eng'>help me carry</code>는 주어가 She라서 helps여야 해요."},
   {id:18, unit:"사역동사", type:"객관식", topic:"make + 동사원형",
    body:`빈칸에 알맞은 것은?<br><code class="eng">The rule makes everyone ___ a helmet.</code>`,
    choices:["wears","to wear","wear","wearing","worn"], answer:3,
@@ -610,11 +610,27 @@ function refreshStart(){
 nameInput.addEventListener('input', refreshStart);
 nameInput.addEventListener('keydown', e => { if(e.key==='Enter' && nameInput.value.trim()) startQuiz(); });
 
+// 객관식 보기를 매번 무작위로 섞어 정답 위치를 바꾼다
+function shuffleAllChoices(){
+  QUESTIONS.forEach(q => {
+    if(q.type !== '객관식' || !q.choices) return;
+    const correct = q.choices[q.answer-1];
+    const arr = q.choices.slice();
+    for(let i=arr.length-1; i>0; i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [arr[i],arr[j]] = [arr[j],arr[i]];
+    }
+    q.choices = arr;
+    q.answer = arr.indexOf(correct) + 1;
+  });
+}
+
 function startQuiz(){
   const name = nameInput.value.trim();
   if(!name){ showToast('이름을 먼저 입력해 주세요 ✍️'); nameInput.focus(); return; }
   STUDENT = name;
   state.startTime = Date.now();
+  shuffleAllChoices();
   renderQuiz();
   show('screen-quiz');
 }
